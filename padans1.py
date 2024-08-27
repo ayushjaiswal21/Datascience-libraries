@@ -30,3 +30,40 @@ data_test.sort_values(by='colume_name') #to sort column
 data_test.dropna() # we want to drop missing values
 data_test.dropna(axis=1)
 data_test.dropna(thresh=2)
+#replace null values
+data_test = pd.read_excel("data_test.xlsx")
+data_test.Fillna(s,inplace=True) # to fill null values
+data_test["column_name"].Fillna(10,inplace=True) #tp filling specific file
+data_test["column_name"].mean() # print mean 
+
+# deal with duplicate values in data
+data_test.duplicated() #for priting duplicate values 
+data_test.drop_duplicated() #for removing duplicated values
+data_test.corr() #check the corealtionship (always get in zero and one )
+
+#for concatenate 2 files
+data_con = pd.read_excel(data_con.xlsx)
+pd.concat([data_test,data_con])
+
+#for concatinating column wise we have to give axis =1
+concat_df =pd.concat([data_test,data_con],axis=1)
+concat_df.to_excel('data_write.xlsx',sheet_name='sheet1') #for exporting concatinated file into working directory.
+
+#indexing
+df2=pd.DataFrame({'sports':['cricket','football','valleyball'],
+                  'city':['delhi','mumbai','pune'],
+                  'amazon':['books','clothes','battery','charger']},
+                index=[0,1,2])
+df2.loc[2]
+df2[['city','sports']]
+
+#iloc - get the combination of row and columns
+df2.iloc[::]
+#if df2.iloc[0:,0:3] then we get 0 row and column 0 to 2
+
+#merging
+left = pd.DataFram({'a':['hello','sir'],'b':[1,2]})
+right = pd.DataFram({'a':['hello','mam'],'c':[3,4]})
+
+#for merging
+left.mearge(right,how='left',on='a')
